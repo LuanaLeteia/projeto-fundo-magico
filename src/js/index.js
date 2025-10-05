@@ -12,19 +12,38 @@
 //    - Inserir o CSS retornado dinamicamente na página para aplicar o background.
 // 7. Remover o indicador de carregamento após o recebimento da resposta.
 
-document.addEventListener('DOMContentLoaded', function (){
-    
+function setLoading(isLoading) {
+    const btnSpan = document.getElementById('generate-btn');
+
+    if (isLoading) {
+        btnSpan.innerHTML = 'Gerando Background...';
+    } else {
+        btnSpan.innerHTML = 'Gerar Background';
+    }
+
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
     // PASSO 1: 
 
     const form = document.querySelector('.form-group');
     const textArea = document.getElementById('description');
 
-    document.addEventListener('submit', function(event){
+    document.addEventListener('submit', function (event) {
         event.preventDefault();
 
         // PASSO 2:
 
         const description = textArea.value.trim();
-        
+
+        if (!description) {
+            return;
+        }
+
+        // PASSO 3:
+
+        setLoading(true);
+
     });
 });
