@@ -25,15 +25,14 @@ function setLoading(isLoading) {
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    // PASSO 1: 
-
     const form = document.querySelector('.form-group');
     const textArea = document.getElementById('description');
+    const htmlCode = document.getElementById('html-code');
+    const cssCode = document.getElementById('css-code');
+    const preview = document.getElementById('preview-section');
 
-    document.addEventListener('submit', function (event) {
+    form.addEventListener('submit', async function (event) {
         event.preventDefault();
-
-        // PASSO 2:
 
         const description = textArea.value.trim();
 
@@ -41,9 +40,45 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // PASSO 3:
-
         setLoading(true);
+
+        try {
+
+            const response = await fetch('https://l-leteiadev.app.n8n.cloud/webhook/projeto-fundo-magico', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ description })
+            });
+
+            const data = await response.json();
+
+            htmlCode.textContent = data.code || "";
+            cssCode.textContent = data.style || "";
+
+            preview.style.display = 'block';
+            preview.innerHTML = data.code;
+
+            let styleTag = document.getElementById("dynamic-style");
+
+            if (styleTag) styleTag.remove();
+
+            if (data.style) {
+                styleTag = document.createElement('style');
+                styleTag.id = 'dynamic-style';
+
+                styleTag.textContent = data.style;
+                document.head.appendChild(styleTag);
+            }
+
+        } catch (error) {
+            console.error('Erro ao gerar o background:', error);
+            htmlCode.textContent = "Não foi possivel gerar o código HTML, tente novamente.";
+            cssCode.textContent = "Não foi possivel gerar o código CSS, tente novamente.";
+            preview.innerHTML = "";
+
+        } finally {
+            setLoading(false);
+        }
 
     });
 });
