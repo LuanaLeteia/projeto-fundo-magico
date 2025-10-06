@@ -3,6 +3,8 @@
 O Gerador de Background é uma aplicação web integrada ao n8n que permite criar backgrounds personalizados de forma automática com ajuda de inteligência artificial.
 O usuário faz uma solicitação descrevendo o tipo de fundo desejado, e o sistema retorna o código HTML e CSS prontos para uso em qualquer projeto.
 
+⚙️ O arquivo workflow-projeto-gerador-background.json contém o fluxo completo para importação no n8n.
+
 
 
 ## 💻 Tecnologias utilizadas
@@ -26,16 +28,13 @@ O usuário faz uma solicitação descrevendo o tipo de fundo desejado, e o siste
 
 ## 🧠 Integração com o n8n
 
-✔️ O projeto utiliza um workflow do n8n para:
-✔️ Receber as solicitações do front-end;
-✔️ Processar o prompt através de uma IA Gemini;
-✔️ Retornar a resposta com os códigos gerados.
+- O projeto utiliza um workflow do n8n para;
+- Receber as solicitações do front-end;
+- Processar o prompt através de uma IA Gemini;
+- Retornar a resposta com os códigos gerados.
 
 
-
-⚙️ O arquivo workflow-projeto-gerador-background.json contém o fluxo completo para importação no n8n.
-
-
-
+## Preview
+<img width="1348" height="629" alt="image" src="https://github.com/user-attachments/assets/aa4e4bce-bf2a-4269-bf5f-f1b85d9b9ed4" />
 
 
