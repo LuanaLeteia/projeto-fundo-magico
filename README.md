@@ -33,7 +33,7 @@ O usuário faz uma solicitação descrevendo o tipo de fundo desejado, e o siste
 
 
 
-## ⚙️ O arquivo workflow-projeto-gerador-background.json contém o fluxo completo para importação no n8n.
+⚙️ O arquivo workflow-projeto-gerador-background.json contém o fluxo completo para importação no n8n.
 
 
 
