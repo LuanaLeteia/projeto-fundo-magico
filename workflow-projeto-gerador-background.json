@@ -1,0 +1,195 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "projeto-fundo-magico",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -352,
+        0
+      ],
+      "id": "d2d7d4c0-e31e-4f73-a002-1586e31b762d",
+      "name": "Webhook",
+      "webhookId": "0c1f8b7c-75f3-4a06-912d-d53c9a00973b"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        448,
+        0
+      ],
+      "id": "015a33db-eedf-49d7-ab60-d5018429ca56",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.description }}",
+        "options": {
+          "systemMessage": "Gerador de Animações de FUNDO DE PAGINA CSS\nCrie uma animação CSS de FUNDO DE SITE e responda somente com este formato, em json puro\n\n{\n\"code\": \"HTML gerado\",\n\"preview\": \"<div class=\"bg\"></div>\n<div class=\"bg bg2\"></div>\n<div class=\"bg bg3\"></div>\",\n\"style\": \"CSS puro\"\n}\n\nExemplo de fundo animado\n\n{\ncode: \"<div class=\"bg\"></div>\n<div class=\"bg bg2\"></div>\n<div class=\"bg bg3\"></div>\",\n\nstyle:\"html {\n  height:100%;\n}\n\nbody {\n  margin:0;\n}\n\n.bg {\n  animation:slide 3s ease-in-out infinite alternate;\n  background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);\n  bottom:0;\n  left:-50%;\n  opacity:.5;\n  position:fixed;\n  right:-50%;\n  top:0;\n  z-index:-1;\n}\n\n.bg2 {\n  animation-direction:alternate-reverse;\n  animation-duration:4s;\n}\n\n.bg3 {\n  animation-duration:5s;\n}\n\n.content {\n  background-color:rgba(255,255,255,.8);\n  border-radius:.25em;\n  box-shadow:0 0 .25em rgba(0,0,0,.25);\n  box-sizing:border-box;\n  left:50%;\n  padding:10vmin;\n  position:fixed;\n  text-align:center;\n  top:50%;\n  transform:translate(-50%, -50%);\n}\n\nh1 {\n  font-family:monospace;\n}\n\n@keyframes slide {\n  0% {\n    transform:translateX(-25%);\n  }\n  100% {\n    transform:translateX(25%);\n  }\n}\"\n}\n\nREGRAS:\nSem quebras de linha\nUse aspas simples dentro das strings\nAnimações coloridas e impressionantes\nCódigo simples com visual marcante\nse atente pra criar todas os elementos html que você definiu nas classes css e vice versa\nnão retorne nenhuma div ou estilo com loader, ou classe loader\nnão retorne nenhuma propriedade com overflow"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -144,
+        0
+      ],
+      "id": "f7a1258f-c356-4698-bab5-3d155d8b135f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        192
+      ],
+      "id": "1191e566-2c71-4da5-969b-ab1c1c4606dd",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CuPfKR24FBC7toWQ",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst output = $input.first().json.output.replace(\"json\",\"\").replaceAll(\"`\",\"\");\n\nreturn {output};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ],
+      "id": "a8aa3ff0-c72f-4fbe-9cbf-472a585436bb",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "l-leteiadev.app.n8n.cloud",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+            "content-length": "37",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "accept-language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7,es;q=0.6",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "2804:14d:5881:9991:8837:41d:bbc4:3c1e",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "BR",
+            "cf-ray": "98a4248fb5d81b27-GRU",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "origin": "http://127.0.0.1:5500",
+            "priority": "u=1, i",
+            "referer": "http://127.0.0.1:5500/",
+            "sec-ch-ua": "\"Google Chrome\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "2804:14d:5881:9991:8837:41d:bbc4:3c1e, 172.71.238.58",
+            "x-forwarded-host": "l-leteiadev.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-40-669b86c79-bd7h8",
+            "x-is-trusted": "yes",
+            "x-real-ip": "2804:14d:5881:9991:8837:41d:bbc4:3c1e"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "description": "gradiente de azul claro para azul escuro"
+          },
+          "webhookUrl": "https://l-leteiadev.app.n8n.cloud/webhook-test/projeto-fundo-magico",
+          "executionMode": "test"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "865dc834-a42d-44a5-b430-416ce374cd29",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b8365e584be18ecf91978f5976012c9f56ecbc24f2baa858815bbedbdbf65b46"
+  },
+  "id": "BXsEBqqOn0F5zxOS",
+  "tags": []
+}
